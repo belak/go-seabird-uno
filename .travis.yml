@@ -1,0 +1,11 @@
+language: go
+go: 1.8
+
+before_install:
+  - go get github.com/alecthomas/gometalinter
+  - gometalinter --install --update
+
+script:
+  - go install -v ./...
+  - go test -v ./...
+  - gometalinter ./... --fast -D dupl -D gas
