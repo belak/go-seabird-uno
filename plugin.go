@@ -7,7 +7,7 @@ import (
 	"github.com/Unknwon/com"
 	"github.com/belak/go-seabird"
 	"github.com/belak/go-seabird/plugins"
-	irc "github.com/go-irc/irc/v2"
+	"github.com/go-irc/irc"
 )
 
 func init() {
