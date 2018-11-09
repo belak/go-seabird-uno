@@ -1,0 +1,23 @@
+workspace:
+  base: /go
+  path: /seabird-uno
+
+pipeline:
+  test:
+    image: golang:1.11-alpine
+    commands:
+      # Testing
+      - apk add -U --no-cache build-base git
+      # Linting Prep
+      - GO111MODULE=off go get -u github.com/alecthomas/gometalinter
+      - GO111MODULE=off gometalinter --install
+
+      # Basic build
+      - go get -d -v ./...
+      - go install -v ./...
+
+      # Tests
+      - go test -v ./...
+
+      # Linting
+      - gometalinter ./... --fast -D dupl -D gas
