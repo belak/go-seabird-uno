@@ -1,0 +1,25 @@
+language: go
+go:
+  - '1.11'
+  - stable
+
+before_install:
+  - GO111MODULE=off go get -u github.com/axw/gocov/gocov
+  - GO111MODULE=off go get -u github.com/mattn/goveralls
+  - GO111MODULE=off go get -u golang.org/x/tools/cmd/cover
+  - GO111MODULE=off go get -u github.com/alecthomas/gometalinter
+  - GO111MODULE=off go get -u github.com/alecthomas/gometalinter
+  - GO111MODULE=off gometalinter --install
+
+script:
+  # Test
+  - go test -v ./...
+
+   # Linting
+  - go vet ./...
+  - go vet --shadow ./...
+  - $HOME/gopath/bin/gometalinter ./...
+
+after_script:
+  - go test -covermode=count -coverprofile=profile.cov
+  - $HOME/gopath/bin/goveralls -coverprofile=profile.cov -service=travis-ci
