@@ -4,8 +4,8 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/Unknwon/com"
 	"github.com/belak/go-seabird/plugins"
+	"github.com/unknwon/com"
 
 	seabird "github.com/belak/go-seabird"
 	irc "gopkg.in/irc.v3"
